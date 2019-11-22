@@ -2,7 +2,7 @@ version: "3.7"
 services:
   node-app-login:
     container_name: node-login
-    image: iulianroman/node-login:0.0.1
+    image: iulianroman/node-login:latest
     tty: true
     environment:
       - DBHOST=mongo
