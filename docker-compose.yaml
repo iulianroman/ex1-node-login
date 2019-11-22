@@ -1,13 +1,12 @@
-version: "3.7"
+version: "3"
 services:
   node-app-login:
     container_name: node-login
     image: iulianroman/node-login:latest
     tty: true
     environment:
-      - DBHOST=mongo
+      - DBHOST=${DBHOST}
       - APPPORT=${APPPORT}
-    command: node server.js
     restart: always
     ports:
       - "${APPPORT}:${APPPORT}"

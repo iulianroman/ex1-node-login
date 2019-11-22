@@ -2,19 +2,9 @@
 
 Login page created using Nodejs and MongoDB as database.
 
-# :closed_lock_with_key: Dependencies
-- express 
-- ejs
-- passport
-- connect-flash 
-- bycrypt-nodejs
-- body-parser
-- cookie-parser
-- method-override
-
 # Instruction :warning:
 
-If you would like to download the code and try it for yourself:
+If you would like to run the application:
 
 - Clone the repo: `git clone git@github.com:iulianroman/ex1-node-login`
 - Install packages: `npm install`
