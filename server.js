@@ -1,41 +1,42 @@
 // server.js
 
-// set up ======================================================================
-// get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 8080;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
 
-var configDB = require('./config/database.js');
+const express  = require('express');
+const app      = express();
+const port     = process.env.PORT || 3000;
+const mongoose = require('./config/database.js');
+const passport = require('passport');
+const flash    = require('connect-flash');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
+const expressSession = require('express-session');
+require('./config/passport')(passport); 
 
-// configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+//app.use(express.logger('dev')); // log every request to the console
+app.use(cookieParser()); 
+app.use(bodyParser.urlencoded({
+    extended: true
+	}));
 
-require('./config/passport')(passport); // pass passport for configuration
+app.set('view engine', 'ejs'); 
 
-app.configure(function() {
+const session = {
+	secret: "LoxodontaElephasMammuthusPalaeoloxodonPrimelephas",
+	cookie: {},
+	resave: false,
+	saveUninitialized: false
+  };
+	  
+app.use(expressSession(session)); 
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
 
-	// set up our express application
-	app.use(express.logger('dev')); // log every request to the console
-	app.use(express.cookieParser()); // read cookies (needed for auth)
-	app.use(express.bodyParser()); // get information from html forms
 
-	app.set('view engine', 'ejs'); // set up ejs for templating
+require('./app/routes.js')(app, passport); 
 
-	// required for passport
-	app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-	app.use(passport.initialize());
-	app.use(passport.session()); // persistent login sessions
-	app.use(flash()); // use connect-flash for flash messages stored in session
 
-});
+app.listen(port, () => {
+	console.log(`Listening to requests on http://localhost:${port}`);
+  });
 
-// routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-// launch ======================================================================
-app.listen(port);
-console.log('The magic happens on port ' + port);

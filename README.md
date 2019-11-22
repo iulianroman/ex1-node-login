@@ -1,6 +1,6 @@
 # NodeJS Login page using MongoDB as database 
 
-This is a simple Login page created using Nodejs and MongoDB as database.It contains a simple homeage asking the user whether he needs a login page or a sign up page.And a button for both of these pages.The webaapp is made as a part of my learning in Nodejs and will try to implement more features like facebook login,twitterlogin,google+ login, ...etc.
+Login page created using Nodejs and MongoDB as database.
 
 # :closed_lock_with_key: Dependencies
 - express 
@@ -8,7 +8,6 @@ This is a simple Login page created using Nodejs and MongoDB as database.It cont
 - passport
 - connect-flash 
 - bycrypt-nodejs
-- morgan 
 - body-parser
 - cookie-parser
 - method-override
@@ -17,10 +16,10 @@ This is a simple Login page created using Nodejs and MongoDB as database.It cont
 
 If you would like to download the code and try it for yourself:
 
-- Clone the repo: `git clone git@github.com:scotch-io/node-authentication-guide`
+- Clone the repo: `git clone git@github.com:iulianroman/ex1-node-login`
 - Install packages: `npm install`
 - Change out the database configuration in `config/database.js`
 - Launch: `node server.js`
-- Visit in your browser at: `http://localhost:8080`
+- Visit in your browser at: `http://localhost:<APPPORT>`
 
-Thank you ! :smile:
+

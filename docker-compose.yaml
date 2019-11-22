@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  node-app-login:
+    container_name: node-login
+    image: iulianroman/node-login:0.0.1
+    tty: true
+    environment:
+      - DBHOST=mongo
+      - APPPORT=${APPPORT}
+    command: node server.js
+    restart: always
+    ports:
+      - "${APPPORT}:${APPPORT}"
+    depends_on: 
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes: 
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
