@@ -2,7 +2,7 @@
 
 Login page created using Nodejs and MongoDB as database.
 
-# Instruction
+# Installing
 
 If you would like to run the application:
 
@@ -11,14 +11,18 @@ If you would like to run the application:
 ## For local install (mongodb service should be installed and started locally):
 - Install packages: `npm install`
 - Change out the database configuration in `config/database.js`
-- Launch: `node server.js`
+- Start the server: `node server.js`
 - Visit in your browser at: `http://localhost:<APPPORT>`
+
 ## For running as docker container:
 - edit the .env file 
-- run docker-compose up 
+- Run: `docker-compose up`
+- Visit in your browser at: `http://localhost:<APPPORT>` 
+
 ## For running in a Kubernetes cluster:
-- run kubectl create -f k8s-pod-node-login.yaml 
-OR
-- kubectl create -f k8s-svc-node-login.yaml
+- To run as pod: `kubectl create -f k8s-pod-node-login.yaml`
+- To run as service: `kubectl create -f k8s-svc-node-login.yaml`
+- Forward the service or pod in order to access it from outside the K8s cluster: `kubectl port-forward svc/node-login <APPPORT>:<APPPORT>`
+- Visit in your browser at: `http://localhost:<APPPORT>`
 
 
