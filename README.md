@@ -10,12 +10,12 @@ If you would like to run the application:
 
 ## For local install (mongodb service should be installed and started locally):
 - Install packages: `npm install`
-- Change out the database configuration in `config/database.js`
+- Edit the  `config/database.js` if you want to change the application port or database host
 - Start the server: `node server.js`
 - Visit in your browser at: `http://localhost:<APPPORT>`
 
 ## For running as docker container:
-- edit the .env file 
+- edit the `.env` file if you want to change the application port
 - Run: `docker-compose up`
 - Visit in your browser at: `http://localhost:<APPPORT>` 
 
