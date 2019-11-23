@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-login
+  labels:
+    app: node-login
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-login
+  template:
+    metadata:
+      labels:
+        app: node-login
+    spec:
+      containers:
+      - name: login-app
+        image: iulianroman/node-login
+        env: 
+        - name: APPPORT
+          value: "8000"
+        - name: DBHOST
+          value: localhost
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+      - name: mongodb
+        image: mongo
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-login
+spec:
+  ports:
+  - port: 8000                
+    targetPort: 8000        
+  selector:                 
+    app: node-login 
